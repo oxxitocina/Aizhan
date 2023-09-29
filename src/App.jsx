@@ -6,6 +6,8 @@ function App() {
     userScore: 0,
     compScore: 0
   })
+
+  const [ result, setResult ] = useState('Paper covers Rock.')
   
   function convertToWord(n){
     if(n === 0){ return 'Rock'}
@@ -20,15 +22,15 @@ function App() {
   }
 
   function win(userChoice, compChoice){
-    result_p.innerHTML = convertToWord(userChoice) + ' beats ' + convertToWord(compChoice) + ". You win!";
+    setResult(convertToWord(userChoice) + ' beats ' + convertToWord(compChoice) + ". You win!")
   }
 
   function lose(userChoice, compChoice){
-  result_p.innerHTML = convertToWord(userChoice) + ' loses to ' + convertToWord(compChoice) + ". You lost...";
+    setResult(convertToWord(userChoice) + ' loses to ' + convertToWord(compChoice) + ". You lost...")
   }
 
   function draw(userChoice, compChoice){
-    result_p.innerHTML = convertToWord(userChoice) + ' equals to ' + convertToWord(compChoice) + ". It's a draw!";
+    setResult(convertToWord(userChoice) + ' equals to ' + convertToWord(compChoice) + ". It's a draw!")
   }
 
   async function game(userChoice){
@@ -80,7 +82,7 @@ async function viewHistory(){
       </div>
     
     <div className="result">
-        <p>Paper covers Rock.</p>
+        <p>{result}</p>
     </div>
     <br/>
     <div className="betclass">
