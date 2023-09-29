@@ -8,6 +8,8 @@ function App() {
   })
 
   const [ result, setResult ] = useState('Paper covers Rock.')
+
+  const [ history, setHistory ] = useState()
   
   function convertToWord(n){
     if(n === 0){ return 'Rock'}
@@ -71,7 +73,7 @@ async function viewHistory(){
         const userChoice = event.args.userChoice;
         const compChoice = parseInt(event.args.compChoice.toString());
         
-        history.innerHTML +=  `<br> Player: ${player}, Winner: ${isWinner}, Outcome: ${outcome} <br>Where User choice - ${convertToWord(userChoice)}, Computer choice - ${convertToWord(compChoice)}<br><br>`;
+        setHistory(...history, `<br> Player: ${player}, Winner: ${isWinner}, Outcome: ${outcome} <br>Where User choice - ${convertToWord(userChoice)}, Computer choice - ${convertToWord(compChoice)}<br><br>`)
     });
 }
 
@@ -106,7 +108,7 @@ async function viewHistory(){
     
     <div className="gamehistory">
         <button onClick={viewHistory}>Game History</button> <p style={{fontSize: 'x-small'}}>if not shown, try click twice or wait longer</p>
-        <p><span id="history"></span></p>
+        <p><span id="history">{history}</span></p>
     </div>
     </>
   )
